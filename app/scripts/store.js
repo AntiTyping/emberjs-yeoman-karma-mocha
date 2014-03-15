@@ -1,0 +1,1 @@
+Yoemberkarma.ApplicationAdapter = DS.FixtureAdapter;
