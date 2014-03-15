@@ -1,18 +1,31 @@
 describe("Index page", function () {
     it("displays a welcome message", function () {
+        Todos.reset();
         visit('/').then(function () {
-            find('div.well').text().should.contain('Welcome to Yeoman and Ember.js');
+            find('a.brand').text().should.contain('AngularDo');
+        });
+    });
+    it("displays a welcome messagew", function () {
+        Todos.reset();
+        visit('/');
+        click("a.priority:contains('High')").then(function () {
+            debugger;
+            find('a.brand').text().should.contain('AngularDo');
         });
     });
 });
 
-describe("ApplicationRoute", function () {
-    describe("model property", function () {
-        var applicationRoute = Yoemberkarma.ApplicationRoute.create();
-        it("should have the right number of items", function () {
-            var model = applicationRoute.model();
-            model.should.have.length(3);
-        });
-    });
-});
+// describe("ApplicationRoute", function () {
+    // describe("model property", function () {
+        // it("should have the right number of items", function () {
+        // Todos.reset();
+        // visit('/').then(function () {
+          // debugger;
+        // var applicationRoute = Todos.__container__.lookup("route:todos")
+            // var model = applicationRoute.model();
+            // model.get('length').should.equal(3);
+          // });
+          // });
+    // });
+// });
 

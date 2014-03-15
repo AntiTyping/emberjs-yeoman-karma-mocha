@@ -262,13 +262,13 @@ module.exports = function (grunt) {
         copy: {
             fonts: {
                 files: [
-                    { 
+                    {
                         expand: true,
                         flatten: true,
                         filter: 'isFile',
                         cwd: '<%= yeoman.app %>/bower_components/',
                         dest: '<%= yeoman.app %>/styles/fonts/',
-                        src: [ 
+                        src: [
                             'bootstrap-sass/dist/fonts/**', // Bootstrap
                             'font-awesome/fonts/**' // Font-Awesome
                         ]

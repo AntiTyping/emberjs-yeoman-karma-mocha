@@ -1,23 +1,10 @@
-// var Yoemberkarma = window.Yoemberkarma = Ember.Application.create();
-
-// [> Order and include as you please. <]
-// require('scripts/controllers/*');
-// require('scripts/store');
-// require('scripts/models/*');
-// require('scripts/routes/*');
-// require('scripts/views/*');
-// require('scripts/router');
 window.Todos = Ember.Application.create({
   LOG_TRANSITIONS: true,
   LOG_TRANSITIONS_INTERNAL: true
 });
 
-// Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
+Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
 
-Todos.Store = DS.Store.extend({
-  revision: 13,
-  adapter: DS.FixtureAdapter
-});
 
 Todos.Todo = DS.Model.extend({
   name: DS.attr("string"),
@@ -45,7 +32,6 @@ Todos.Router.map(function() {
 
 Todos.TodosRoute = Ember.Route.extend({
   model: function() {
-    debugger;
     return this.store.find('todo');
   }
 });
