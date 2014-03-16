@@ -1,1 +1,1 @@
-Yoemberkarma.ApplicationAdapter = DS.FixtureAdapter;
+Todos.ApplicationAdapter = DS.FixtureAdapter.extend();

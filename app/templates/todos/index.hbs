@@ -1,40 +1,39 @@
-      <div class="well">
-        <div class="input-append">
-          <form name="form" novalidate>
-            {{view Ember.Select content=priorities value=priority class="span2 task-priority"}}
-            {{input id="appendedInputButton" type="text" class="span6 task-name" placeholder="Add new task here" value=newName action="createTodo"}}
-            <button {{action "createTodo"}} class="btn btn-primary js-add" type="button">Add</button>
-            {{keywords}}
-          </form>
-        </div>
+<div class="well">
+  <div class="input-append">
+    <form name="form" novalidate>
+      {{view Ember.Select content=priorities value=priority class="span2 task-priority"}}
+      {{input id="appendedInputButton" type="text" class="span6 task-name" placeholder="Add new task here" value=newName action="createTodo"}}
+      <button {{action "createTodo"}} class="btn btn-primary js-add" type="button">Add</button>
+      {{keywords}}
+    </form>
+  </div>
 
-        <div id="validation" class="alert alert-error hide">
-          Task name should be at least 3 characters long.
-        </div>
-      </div>
+  <div id="validation" class="alert alert-error hide">
+    Task name should be at least 3 characters long.
+  </div>
+</div>
 
-          <table class="table table-striped">
-            <thead>
-      <thead>
-        <tr>
-          <th class="span1">#</th>
-          <th class="js-task-counter">{{todoCount}} {{inflection}}</th>
-          <th class="span1"></th>
-        </tr>
-            </thead>
-            <tbody>
-              {{#each filteredTodos itemController='todo'}}
-              <tr class="task">
-                <td>{{_view.contentIndex}}</td>
-                <td>
-                  {{name}}
-<span class="priority label">{{priority}}</span>
-                </td>
- <td>
-   <button {{action "removeTodo"}} class="btn btn-success js-done">Done</button>
- </td>
-              </tr>
-              {{/each}}
-            </tbody>
-          </table>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="span1">#</th>
+      <th class="js-task-counter">{{todoCount}} {{inflection}}</th>
+      <th class="span1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each filteredTodos itemController='todo'}}
+    <tr class="task">
+      <td>{{_view.contentIndex}}</td>
+      <td>
+        {{name}}
+        <span class="priority label">{{priority}}</span>
+      </td>
+      <td>
+        <button {{action "removeTodo"}} class="btn btn-success js-done">Done</button>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
 

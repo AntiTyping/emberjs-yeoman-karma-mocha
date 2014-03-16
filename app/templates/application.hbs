@@ -1,31 +1,46 @@
-<div>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Your App</a>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">AngularDo</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="#/about">About</a></li>
+        </ul>
+        <div class="navbar-form form-search pull-right">
+          <div class="input-append">
+            {{input type="text" class="span2 search-query query-name" placeholder="Search" value=keywords}}
+            <button {{action 'clearKeywords'}} class="btn js-clear">Clear</button>
+          </div>
         </div>
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-        </div>
-    </nav>
-    <div class="container" id="main">
-        <div class="row">
-            <div>
-                <div class="col-md-3">
-                    <div class="well sidebar-nav">
-                        <strong>Colors</strong>
-                        <ul class="list-group">
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    {{outlet}}
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+</div>
+
+<div class="container js-main">
+  <div class="row">
+    <div class="span3">
+      <div class="well" style="max-width: 340px; padding: 8px 0;">
+        <ul class="nav nav-list">
+          <li class="nav-header">Priority</li>
+          <li>
+            {{#link-to "todos.index" class="priority"}}All{{/link-to}}
+          </li>
+          <li>
+            {{#link-to "todos.high" class="priority"}}High{{/link-to}}{{window}}
+          </li>
+          <li>
+            {{#link-to "todos.medium" class="priority"}}Medium{{/link-to}}
+          </li>
+          <li>
+            {{#link-to "todos.low" class="priority"}}Low{{/link-to}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="span9">
+      {{outlet}}
+    </div>
+  </div>
 </div>
