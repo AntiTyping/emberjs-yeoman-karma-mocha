@@ -16,7 +16,7 @@ Ember.Test.adapter = Ember.Test.MochaAdapter.create();
 Todos.setupForTesting();
 Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
 Todos.injectTestHelpers();
-Ember.run(Todos, Todos.advanceReadiness);
+// Ember.run(Todos, Todos.advanceReadiness);
 
 window.start = function () {};
 window.stop = function () {};

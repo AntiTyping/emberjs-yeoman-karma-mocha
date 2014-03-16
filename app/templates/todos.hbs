@@ -1,69 +1,46 @@
-      <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">AngularDo</a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-            </ul>
- <div class="navbar-form form-search pull-right">
-   <div class="input-append">
-         {{input type="text" class="span2 search-query" placeholder="Search" value=keywords}}
-     <button {{action 'clearKeywords'}}class="btn js-clear">Clear</button>
-   </div>
- </div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">AngularDo</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="#">Home</a></li>
+          <li><a href="#/about">About</a></li>
+        </ul>
+        <div class="navbar-form form-search pull-right">
+          <div class="input-append">
+            {{input type="text" class="span2 search-query query-name" placeholder="Search" value=keywords}}
+            <button {{action 'clearKeywords'}}class="btn js-clear">Clear</button>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="container js-main">
-      <div class="row">
-        <div class="span3">
-<div class="well" style="max-width: 340px; padding: 8px 0;">
-  <ul class="nav nav-list">
-    <li class="nav-header">Priority</li>
-    <li>
-      {{#link-to "todos.index" class="priority"}}All{{/link-to}}
-    </li>
-    <li>
-      {{#link-to "todos.high" class="priority"}}High{{/link-to}}{{window}}
-    </li>
-    <li>
-      {{#link-to "todos.medium"}}Medium{{/link-to}}
-    </li>
-    <li>
-      {{#link-to "todos.low"}}Low{{/link-to}}
-    </li>
-  </ul>
+  </div>
 </div>
-        </div>
-        <div class="span9">
-   <div class="well">
-     <div class="input-append">
-       <form name="form" novalidate>
-{{view Ember.Select content=priorities value=priority class="span2"}}
-         {{input id="appendedInputButton" type="text" class="span6" placeholder="Add new task here" value=newName action="createTodo"}}
-  <button {{action "createTodo"}} class="btn btn-primary js-add" type="button">Add</button>
-{{keywords}}
-       </form>
-     </div>
 
-     <div id="validation" class="alert alert-error hide">
-       Task name should be at least 3 characters long.
-     </div>
-   </div>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th class="span1">#</th>
-                <th >Task</th>
-    <th class="span1"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {{outlet}}
-            </tbody>
-          </table>
-        </div>
+<div class="container js-main">
+  <div class="row">
+    <div class="span3">
+      <div class="well" style="max-width: 340px; padding: 8px 0;">
+        <ul class="nav nav-list">
+          <li class="nav-header">Priority</li>
+          <li>
+            {{#link-to "todos.index" class="priority"}}All{{/link-to}}
+          </li>
+          <li>
+            {{#link-to "todos.high" class="priority"}}High{{/link-to}}{{window}}
+          </li>
+          <li>
+            {{#link-to "todos.medium" class="priority"}}Medium{{/link-to}}
+          </li>
+          <li>
+            {{#link-to "todos.low" class="priority"}}Low{{/link-to}}
+          </li>
+        </ul>
       </div>
+    </div>
+    <div class="span9">
+      {{outlet}}
+    </div>
+  </div>
 </div>

@@ -33,13 +33,15 @@
           <a class="brand" href="#">AngularDo</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
+              <li><a href="#">Home</a></li>
+              <li><a href="#/about">About</a></li>
             </ul>
- <div class="navbar-form form-search pull-right">
-   <div class="input-append">
-         {{input type="text" class="span2 search-query" placeholder="Search" value=keywords}}
-     <button {{action 'clearKeywords'}}class="btn js-clear">Clear</button>
-   </div>
- </div>
+            <div class="navbar-form form-search pull-right">
+              <div class="input-append">
+                {{input type="text" class="span2 search-query" placeholder="Search" value=keywords}}
+                <button {{action 'clearKeywords'}}class="btn js-clear">Clear</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

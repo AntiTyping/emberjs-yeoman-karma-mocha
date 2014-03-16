@@ -12,8 +12,8 @@ Todos.Todo = DS.Model.extend({
 });
 
 Todos.Todo.FIXTURES = [
-  {id: 1, name: "Task 1", priority: "low"},
-  {id: 2, name: "Task 2", priority: "low"},
+  {id: 1, name: "Task 1", priority: "high"},
+  {id: 2, name: "Task 2", priority: "medium"},
   {id: 3, name: "Task 3", priority: "low"}
 ];
 
@@ -39,7 +39,6 @@ Todos.TodosRoute = Ember.Route.extend({
 Todos.TodosIndexRoute = Ember.Route.extend({
   controllerName: 'TodosSearch',
   model: function() {
-console.log("model");
     return this.store.find('todo');
   },
   ccc: 13,
@@ -149,16 +148,13 @@ Todos.TodosSearchController = Ember.ArrayController.extend({
     } else {
       return todos;
     }
-  }.property('parentKeywords', 'model')
-});
-
-
-Todos.TodosController = Ember.ArrayController.extend({
+  }.property('parentKeywords', 'model'),
   priorities: ["high", "medium", "low"],
   keywords: '1',
   needs: ['application', 'todos'],
   actions: {
     createTodo: function() {
+      debugger;
       var name = this.get('newName');
       var priority = this.get('priority');
       if (!name.trim() || name.length < 3) {
@@ -183,6 +179,10 @@ Todos.TodosController = Ember.ArrayController.extend({
       this.set('keywords', '');
     }
   }
+});
+
+
+Todos.TodosController = Ember.ArrayController.extend({
 });
 
 Todos.TodoController = Ember.ObjectController.extend({

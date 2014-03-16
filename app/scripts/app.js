@@ -8,16 +8,16 @@
 // require('scripts/views/*');
 // require('scripts/router');
 window.Todos = Ember.Application.create({
-  LOG_TRANSITIONS: true,
-  LOG_TRANSITIONS_INTERNAL: true
+  // LOG_TRANSITIONS: true,
+  // LOG_TRANSITIONS_INTERNAL: true
 });
 
-// Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
+Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
 
-Todos.Store = DS.Store.extend({
-  revision: 13,
-  adapter: DS.FixtureAdapter
-});
+// Todos.Store = DS.Store.extend({
+  // revision: 13,
+  // adapter: DS.FixtureAdapter
+// });
 
 Todos.Todo = DS.Model.extend({
   name: DS.attr("string"),
@@ -25,8 +25,8 @@ Todos.Todo = DS.Model.extend({
 });
 
 Todos.Todo.FIXTURES = [
-  {id: 1, name: "Task 1", priority: "low"},
-  {id: 2, name: "Task 2", priority: "low"},
+  {id: 1, name: "Task 1", priority: "high"},
+  {id: 2, name: "Task 2", priority: "medium"},
   {id: 3, name: "Task 3", priority: "low"}
 ];
 
@@ -45,7 +45,6 @@ Todos.Router.map(function() {
 
 Todos.TodosRoute = Ember.Route.extend({
   model: function() {
-    debugger;
     return this.store.find('todo');
   }
 });
@@ -53,12 +52,10 @@ Todos.TodosRoute = Ember.Route.extend({
 Todos.TodosIndexRoute = Ember.Route.extend({
   controllerName: 'TodosSearch',
   model: function() {
-console.log("model");
     return this.store.find('todo');
   },
   ccc: 13,
   aaa: function() {
-    console.log("aaa");
     return 12;
   }.property('abc')
 });
@@ -150,9 +147,19 @@ Todos.TodosSearchController = Ember.ArrayController.extend({
     // console.log("search model");
     // // return this.get('model');
   // }
+  todoCount: function() {
+    console.log("todoCount");
+    return this.get('filteredTodos').get('length');
+  }.property('filteredTodos'),
+  inflection: function() {
+    var count = this.get('todoCount');
+    if (count == 1) {
+      return "task";
+    };
+    return "tasks";
+  }.property('todoCount'),
   filteredTodos: function() {
-    console.log("search model");
-    console.log("init", this.get('parentKeywords'));
+    console.log("filteredTodos");
     var keywords = this.get('parentKeywords');
     var todos = this.get('model');
 
@@ -163,13 +170,9 @@ Todos.TodosSearchController = Ember.ArrayController.extend({
     } else {
       return todos;
     }
-  }.property('parentKeywords', 'model')
-});
-
-
-Todos.TodosController = Ember.ArrayController.extend({
+  }.property('parentKeywords', '@each.name'),
   priorities: ["high", "medium", "low"],
-  keywords: '1',
+  keywords: '',
   needs: ['application', 'todos'],
   actions: {
     createTodo: function() {
@@ -188,6 +191,7 @@ Todos.TodosController = Ember.ArrayController.extend({
       });
       this.set('newName', '');
 
+
       todo.save();
     },
     search: function() {
@@ -198,6 +202,7 @@ Todos.TodosController = Ember.ArrayController.extend({
     }
   }
 });
+
 
 Todos.TodoController = Ember.ObjectController.extend({
   actions: {
